@@ -1,0 +1,25 @@
+name: refstack-cli 
+version: '0.1+git'
+summary: RefStack provides tools for the interoperability testing of OpenStack clouds
+description: |
+        RefStack provides users in the OpenStack community with a Tempest wrapper, 
+        refstack-client (included in this snap), that helps to verify interoperability 
+        of their cloud with other OpenStack clouds. 
+        It does so by validating any cloud implementation against the OpenStack Tempest API tests.
+grade: stable
+confinement: strict 
+
+parts:
+  refstack-client-python:
+    plugin: python
+    python-version: python2
+    source: https://github.com/openstack/refstack-client.git 
+    requirements: requirements.txt 
+
+apps:
+  refstack-client:
+    command: bin/refstack-client
+    aliases:
+     - refstack-client
+    plugs:
+     - network 
